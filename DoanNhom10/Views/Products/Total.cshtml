@@ -1,0 +1,11 @@
+﻿@model DoanNhom10.Models.Order
+
+<div class="navbar-right">
+    @Html.ActionLink("Checkout", "Checkout", "Products",
+    new { @class = "btn btn-default navbar-btn" })
+</div>
+<div class="navbar-text navbar-right">
+    <b>Giỏ hàng của bạn:</b>
+    @Model.OrderDetails.Sum(x => x.Amount) sản phẩm,
+    @Model.Total.ToString("c")
+</div>

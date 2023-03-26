@@ -1,0 +1,53 @@
+﻿@model DoanNhom10.Models.Order
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+<h2>Giỏ hàng của bạn</h2>
+<table id="cartTable" class="table">
+    <thead>
+        <tr>
+            <th>Số lượng</th>
+            <th>Sản phẩm</th>
+            <th class="text-right">Giá</th>
+            <th class="text-right">Thành Tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderDetail in Model.OrderDetails)
+        {
+            <tr>
+                <td class="text-center">@orderDetail.Amount</td>
+                <td class="text-left">@orderDetail.ProductObj.Name</td>
+                <td class="text-right">@orderDetail.ProductObj.Price.ToString("c")</td>
+                <td class="text-right">
+                    @((orderDetail.Amount * orderDetail.ProductObj.Price).ToString("c"))
+                </td>
+                <td>
+                    @Html.ActionLink("Xóa", "RemoveFromCart",
+                    new { productID = orderDetail.ProductID }, new
+                     {
+                         @class = "btn btn-sm-btn - warning" })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.Total.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center">
+    @Html.ActionLink("Trở về", "Index", null, new
+    {
+        @class = "btn btn-primary"
+   })
+    @Html.ActionLink("Mua ngay", "Checkout", null, new
+    {
+        @class = "btn btn-primary"
+   })
+</div>

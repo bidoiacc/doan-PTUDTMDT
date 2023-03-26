@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DoanNhom10.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sản phẩm</h2>
+
+<div class="container">
+    <div class="row grid-demo">
+        @foreach (var item in Model)
+        {
+        <div class="col-md-4">
+
+            <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)"
+                 style="width: 200px;" />
+            <p>
+                <b>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </b>
+            </p>
+
+            <p>
+                @Html.DisplayNameFor(model => model.Price): @Html.DisplayFor(modelItem => item.Price)
+            </p>
+
+            <p>
+                @Html.ActionLink("Thêm vào giỏ hàng", "AddToCart",
+                     new { id = item.ID })
+            </p>
+
+            <p>@Html.ActionLink("Xem chi tiết", "Details", new { id = item.ID })</p>
+        </div>
+        }
+    </div>
+</div>
