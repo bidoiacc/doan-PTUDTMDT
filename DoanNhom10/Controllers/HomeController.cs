@@ -22,7 +22,7 @@ namespace DoanNhom10.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Hãy liên hệ với chúng tôi nếu bạn cần hỗ trợ";
 
             return View();
         }
